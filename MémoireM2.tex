@@ -1,0 +1,129 @@
+\documentclass[a4paper,12pt,twoside,final]{book} 	% Feuille A4, police principale à 12pt, recto-verso
+
+
+%%%%%%%%%%%%%%%%%% Définitions variables globales %%%%%%%%%%%%%%%%%%
+
+\def\TitreMemoire{La technologie dans le cadre de l\textquoteright entrainement de natation}
+\def\AuteurMemoire{Camille Leuregans}
+\def\MaitreApp{Rahma Boudouda}
+\def\TuteurEns{Jean-Fran\c cois Pradat-Peyre}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Packages %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\PassOptionsToPackage{english, francais}{babel}			% Langues
+\usepackage[utf8]{inputenc}								% Accents (encodage en utf8)
+\usepackage[T1]{fontenc}									% Caractères français
+\usepackage{lmodern}
+\usepackage{graphicx}									% Images
+\usepackage{setspace}
+\usepackage{fancyhdr}									% Pour les entêtes et pieds de page
+\usepackage{hyperref}									% Pour les références
+\usepackage[french]{varioref}							% De la table des matières
+\usepackage[hmargin=2cm, vmargin=2cm]{geometry}			% Marges
+\usepackage[dvipsnames, svgnames]{xcolor}
+\usepackage{shorttoc}									% Pour le sommaire
+\usepackage{glossaries}									% Pour le glossaire
+\makeglossaries
+\usepackage{nomencl}										% Pour la table des sigles et abréviations
+\makenomenclature
+%\renewcommand{\nomname}{Table des sigles et abréviations}
+\usepackage[nottoc, notlof, notlot]{tocbibind}			% Pour mettre la bibliograhie dans la table des matières
+\usepackage{wallpaper}									% Ajout du fond de la couverture
+\usepackage[frenchb]{babel}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% Définitions %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setcounter{secnumdepth}{3}								% On défini le nombres de sous chapitres à identifier à 3
+
+\renewcommand{\thesection}{\Roman{section}}				% Chiffres romain des chapitres
+\renewcommand{\thesubsubsection}{\alph{subsubsection}}	% Lettres minuscules pour les sous sous chapitres
+
+
+\pagestyle{fancy}										% Pour les entêtes et pieds de page
+
+\singlespacing
+
+
+%%%%%%%%%%%%%%%%%%%%%%%% Des abréviations %%%%%%%%%%%%%%%%%%%%%%%%
+
+\nomenclature{km}{kilomètres}
+\nomenclature{m}{mètres}
+\nomenclature{min}{minute}
+\nomenclature{récup}{récupération}
+\nomenclature{sec}{secondes}
+\nomenclature{spé}{spécifique}
+\nomenclature{x}{fois}
+\nomenclature{4n}{4 nages}
+
+%%%%%%%%%%%%%%%%%% Liens et couleurs du document %%%%%%%%%%%%%%%%%%
+
+\hypersetup{
+colorlinks=true,
+linkcolor=Navy,
+filecolor=Navy,
+urlcolor=Navy
+}
+
+\xdefinecolor{emeraude}{named}{Emerald}
+\xdefinecolor{marine}{named}{Navy}
+\definecolor{lightgray}{rgb}{0.9,0.9,0.9}
+\definecolor{darkgray}{rgb}{0.4,0.4,0.4}
+\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+
+
+%%%%%%%%%%%%%%%%%%% En-têtes et pieds de pages %%%%%%%%%%%%%%%%%%%
+
+\fancyfoot{}
+\fancyfoot{}
+\fancyhead[L]{\rightmark}
+\fancyhead[C]{}
+\fancyhead[R]{\AuteurMemoire}
+\fancyfoot[L]{{M2 MIAGE App}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{Années 2016/2017}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% Document %%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+  \include{garde}
+  \cleardoublepage
+  \sloppy
+  \include{remerciements}
+  \cleardoublepage
+  \shorttableofcontents{Sommaire}{2}	% Le sommaire (profondeur 2)
+  \addcontentsline{toc}{section}{Sommaire}	% Ajout dans la table des matières
+  \cleardoublepage					% Ajout d'une page blanche si besoin (recto-verso)
+  \include{introduction}
+  \clearpage
+  \include{chapitres}
+  \clearpage
+  \include{conclusion}
+  \clearpage
+  \bibliographystyle{unsrt}
+  \nocite{*}							% Pour afficher toutes les entrées de la biblio (même sans référence)
+  \bibliography{bibliographie}
+  \clearpage
+  \appendix
+  \setcounter{page}{1}				% Pour recommencer la numérotation (annexes)
+  \pagenumbering{Roman}				% Pour que la numérotation soit en numéros romains
+  \include{annexes}
+  \clearpage
+  \include{glossaire}
+  \glsaddall							% Permet de dire que l'on veut afficher tous les acronymes, même ceux sans lien
+  \printglossaries					% Afficher le glossaire
+  \addcontentsline{toc}{chapter}{Glossaire}	% Ajout dans la table des matières
+  \clearpage	
+  \setcounter{tocdepth}{5} 			% Profondeur du sommaire
+  \tableofcontents					% La table des matières (profondeur maximale)
+  \addcontentsline{toc}{chapter}{Table des matières}	% Ajout dans la  table des matières
+  \clearpage
+  \listoffigures						% Table des figures
+  \addcontentsline{toc}{chapter}{Table des figures}	% Ajout dans la table des matières
+  \clearpage
+  \printnomenclature
+  \addcontentsline{toc}{chapter}{Table des sigles et abréviations}	% Ajout dans la table des matières
+  \clearpage
+\end{document}
